@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'mydrawer.dart';
 import 'SideBarScreens/mydevices.dart';
+import 'SideBarScreens/referralprogram.dart';
 
 class ScanForQuality extends StatelessWidget {
   const ScanForQuality({Key? key}) : super(key: key);
@@ -151,7 +152,6 @@ class ContactUs extends StatelessWidget {
 
 class ReferralProgram extends StatelessWidget {
   const ReferralProgram({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -159,14 +159,7 @@ class ReferralProgram extends StatelessWidget {
         title: const Text('My Referrals'),
       ),
       drawer: MyDrawer(),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('List of Referred friends'),
-          onPressed: () {
-            // Navigate to second route when tapped.
-          },
-        ),
-      ),
+      body: ReferProgram(),
     );
   }
 }
