@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'mydrawer.dart';
+import 'SideBarScreens/mydevices.dart';
 
 class ScanForQuality extends StatelessWidget {
   const ScanForQuality({Key? key}) : super(key: key);
@@ -33,14 +34,7 @@ class MyDevices extends StatelessWidget {
         title: const Text('My Devices'),
       ),
       drawer: MyDrawer(),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('List of devices registered against your account'),
-          onPressed: () {
-            // Navigate to second route when tapped.
-          },
-        ),
-      ),
+      body: Devices(),
     );
   }
 }
@@ -67,8 +61,8 @@ class ServiceHistory extends StatelessWidget {
   }
 }
 
-class Billing extends StatelessWidget {
-  const Billing({Key? key}) : super(key: key);
+class MyBilling extends StatelessWidget {
+  const MyBilling({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
