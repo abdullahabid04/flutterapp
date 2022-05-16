@@ -6,7 +6,7 @@ class Billing extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Json Parsing Demo'),
+        title: Text('Billings'),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,

@@ -6,7 +6,7 @@ class Devices extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Json Parsing Demo'),
+        title: Text('My Devices'),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
