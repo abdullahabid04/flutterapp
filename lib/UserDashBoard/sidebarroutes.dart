@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'mydrawer.dart';
 import 'SideBarScreens/mydevices.dart';
 import 'SideBarScreens/referralprogram.dart';
+import 'SideBarScreens/servicehistory.dart';
+import 'SideBarScreens/billing.dart';
 
 class ScanForQuality extends StatelessWidget {
   const ScanForQuality({Key? key}) : super(key: key);
@@ -50,14 +52,7 @@ class ServiceHistory extends StatelessWidget {
         title: const Text('My Service History'),
       ),
       drawer: MyDrawer(),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('List of Services done till now'),
-          onPressed: () {
-            // Navigate to second route when tapped.
-          },
-        ),
-      ),
+      body: Services(),
     );
   }
 }
@@ -72,14 +67,7 @@ class MyBilling extends StatelessWidget {
         title: const Text('My dfgBills'),
       ),
       drawer: MyDrawer(),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('List of Bills'),
-          onPressed: () {
-            // Navigate to second route when tapped.
-          },
-        ),
-      ),
+      body: Billing(),
     );
   }
 }

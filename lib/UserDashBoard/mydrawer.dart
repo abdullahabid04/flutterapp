@@ -17,7 +17,7 @@ class MyDrawer extends StatelessWidget {
                 color: Colors.blue,
                 image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: AssetImage('assets/images/main_top.png'))),
+                    image: AssetImage('assets/images/profile_pic.png'))),
           ),
           ListTile(
               leading: Icon(Icons.input),
