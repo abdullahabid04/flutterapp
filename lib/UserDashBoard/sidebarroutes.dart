@@ -4,6 +4,7 @@ import 'SideBarScreens/mydevices.dart';
 import 'SideBarScreens/referralprogram.dart';
 import 'SideBarScreens/servicehistory.dart';
 import 'SideBarScreens/billing.dart';
+import 'SideBarScreens/myprofile.dart';
 
 class ScanForQuality extends StatelessWidget {
   const ScanForQuality({Key? key}) : super(key: key);
@@ -128,14 +129,7 @@ class MyProfile extends StatelessWidget {
           onPressed: () => {Navigator.of(context).pop()},
         ),
       ),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('Phone, mobile, email and address of user'),
-          onPressed: () {
-            // Navigate to second route when tapped.
-          },
-        ),
-      ),
+      body: Profile(),
     );
   }
 }

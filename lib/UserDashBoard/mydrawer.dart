@@ -95,7 +95,7 @@ class MyDrawer extends StatelessWidget {
                   );
                 }),
             ListTile(
-                leading: const Icon(Icons.accessibility),
+                leading: const Icon(Icons.groups),
                 title: const Text('Referral Program'),
                 onTap: () {
                   Navigator.push(
@@ -107,7 +107,7 @@ class MyDrawer extends StatelessWidget {
             ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text('Log Out'),
-                onTap: () {}),
+                onTap: () => {}),
           ],
         ),
       ),
