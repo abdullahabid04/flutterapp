@@ -12,9 +12,13 @@ class ScanForQuality extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Scan For Quality'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => {Navigator.of(context).pop()},
+        ),
       ),
-      drawer: MyDrawer(),
       body: Center(
         child: ElevatedButton(
           child: const Text('See Water Quality Stats Below'),
@@ -34,9 +38,13 @@ class MyDevices extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('My Devices'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => {Navigator.of(context).pop()},
+        ),
       ),
-      drawer: MyDrawer(),
       body: Devices(),
     );
   }
@@ -49,9 +57,13 @@ class ServiceHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('My Service History'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => {Navigator.of(context).pop()},
+        ),
       ),
-      drawer: MyDrawer(),
       body: Services(),
     );
   }
@@ -64,9 +76,13 @@ class MyBilling extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('My dfgBills'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => {Navigator.of(context).pop()},
+        ),
       ),
-      drawer: MyDrawer(),
       body: Billing(),
     );
   }
@@ -79,9 +95,13 @@ class ShareMyDevices extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('My Devices'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => {Navigator.of(context).pop()},
+        ),
       ),
-      drawer: MyDrawer(),
       body: Center(
         child: ElevatedButton(
           child: const Text('List of owned devices'),
@@ -101,9 +121,13 @@ class MyProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('MyProfile'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => {Navigator.of(context).pop()},
+        ),
       ),
-      drawer: MyDrawer(),
       body: Center(
         child: ElevatedButton(
           child: const Text('Phone, mobile, email and address of user'),
@@ -123,9 +147,13 @@ class ContactUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Company Contact Details'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => {Navigator.of(context).pop()},
+        ),
       ),
-      drawer: MyDrawer(),
       body: Center(
         child: ElevatedButton(
           child: const Text('Phone, mobile, email and address of company'),
@@ -144,32 +172,14 @@ class ReferralProgram extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('My Referrals'),
-      ),
-      drawer: MyDrawer(),
-      body: ReferProgram(),
-    );
-  }
-}
-
-class LogOut extends StatelessWidget {
-  const LogOut({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('My Referrals'),
-      ),
-      drawer: MyDrawer(),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('List of Referred friends'),
-          onPressed: () {
-            // Navigate to second route when tapped.
-          },
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => {Navigator.of(context).pop()},
         ),
       ),
+      body: ReferProgram(),
     );
   }
 }

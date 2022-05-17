@@ -5,97 +5,111 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            child: Text(
-              'AquaPure',
-              style: TextStyle(color: Colors.white, fontSize: 25),
-            ),
-            decoration: BoxDecoration(
+      child: Container(
+        color: Colors.blue,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              padding: EdgeInsets.zero,
+              decoration: BoxDecoration(
                 color: Colors.blue,
-                image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage('assets/images/profile_pic.png'))),
-          ),
-          ListTile(
-              leading: Icon(Icons.input),
-              title: Text('Scan for quality'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ScanForQuality()),
-                );
-              }),
-          ListTile(
-              leading: Icon(Icons.verified_user),
-              title: Text('My Devices'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyDevices()),
-                );
-              }),
-          ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Service History'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ServiceHistory()),
-                );
-              }),
-          ListTile(
-              leading: Icon(Icons.border_color),
-              title: Text('Billing'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyBilling()),
-                );
-              }),
-          ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: Text('Share my devices'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ShareMyDevices()),
-                );
-              }),
-          ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: Text('Profile'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyProfile()),
-                );
-              }),
-          ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: Text('Contact us'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ContactUs()),
-                );
-              }),
-          ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: Text('Referral Program'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ReferralProgram()),
-                );
-              }),
-          ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: Text('Log Out'),
-              onTap: () {}),
-        ],
+              ),
+              child: UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                margin: EdgeInsets.zero,
+                accountName: Text("Abdullah"),
+                accountEmail: Text("Abdullah@aquapure.com"),
+                currentAccountPicture: CircleAvatar(
+                  backgroundColor: Colors.blue,
+                  backgroundImage: AssetImage('assets/images/profile_pic.png'),
+                ),
+              ),
+            ),
+            ListTile(
+                leading: const Icon(Icons.qr_code_scanner),
+                title: const Text('Scan for quality'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ScanForQuality()),
+                  );
+                }),
+            ListTile(
+                leading: const Icon(Icons.devices),
+                title: const Text('My Devices'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyDevices()),
+                  );
+                }),
+            ListTile(
+                leading: const Icon(Icons.miscellaneous_services),
+                title: const Text('Service History'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ServiceHistory()),
+                  );
+                }),
+            ListTile(
+                leading: const Icon(Icons.money),
+                title: const Text('Billing'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyBilling()),
+                  );
+                }),
+            ListTile(
+                leading: const Icon(Icons.share),
+                title: const Text('Share my devices'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ShareMyDevices()),
+                  );
+                }),
+            ListTile(
+                leading: const Icon(Icons.person),
+                title: const Text('Profile'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyProfile()),
+                  );
+                }),
+            ListTile(
+                leading: const Icon(Icons.call),
+                title: const Text('Contact us'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ContactUs()),
+                  );
+                }),
+            ListTile(
+                leading: const Icon(Icons.accessibility),
+                title: const Text('Referral Program'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ReferralProgram()),
+                  );
+                }),
+            ListTile(
+                leading: const Icon(Icons.logout),
+                title: const Text('Log Out'),
+                onTap: () {}),
+          ],
+        ),
       ),
     );
   }
