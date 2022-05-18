@@ -5,6 +5,7 @@ import 'SideBarScreens/referralprogram.dart';
 import 'SideBarScreens/servicehistory.dart';
 import 'SideBarScreens/billing.dart';
 import 'SideBarScreens/myprofile.dart';
+import 'SideBarScreens/sharemydevices.dart';
 
 class ScanForQuality extends StatelessWidget {
   const ScanForQuality({Key? key}) : super(key: key);
@@ -103,14 +104,7 @@ class ShareMyDevices extends StatelessWidget {
           onPressed: () => {Navigator.of(context).pop()},
         ),
       ),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('List of owned devices'),
-          onPressed: () {
-            // Navigate to second route when tapped.
-          },
-        ),
-      ),
+      body: ShareDevice(),
     );
   }
 }
