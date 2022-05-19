@@ -6,6 +6,7 @@ import 'SideBarScreens/servicehistory.dart';
 import 'SideBarScreens/billing.dart';
 import 'SideBarScreens/myprofile.dart';
 import 'SideBarScreens/sharemydevices.dart';
+import 'SideBarScreens/contactus.dart';
 
 class ScanForQuality extends StatelessWidget {
   const ScanForQuality({Key? key}) : super(key: key);
@@ -134,23 +135,15 @@ class ContactUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Company Contact Details'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => {Navigator.of(context).pop()},
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Company Contact Details'),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => {Navigator.of(context).pop()},
+          ),
         ),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('Phone, mobile, email and address of company'),
-          onPressed: () {
-            // Navigate to second route when tapped.
-          },
-        ),
-      ),
-    );
+        body: Contact());
   }
 }
 
