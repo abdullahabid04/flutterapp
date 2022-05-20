@@ -18,7 +18,11 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   final email = TextEditingController();
+  final first_name = TextEditingController();
+  final last_name = TextEditingController();
+  final mobile_no = TextEditingController();
   final password = TextEditingController();
+  final confirm_password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +42,33 @@ class _BodyState extends State<Body> {
               height: size.height * 0.35,
             ),
             RoundedInputField(
+              controller: first_name,
+              hintText: "First Name",
+              onChanged: (value) {},
+            ),
+            RoundedInputField(
+              controller: last_name,
+              hintText: "Last Name",
+              onChanged: (value) {},
+            ),
+            RoundedInputField(
+              controller: mobile_no,
+              hintText: "Mobile No",
+              onChanged: (value) {},
+            ),
+            RoundedInputField(
               controller: email,
-              hintText: "Your Email",
+              hintText: "E-mail",
               onChanged: (value) {},
             ),
             RoundedPasswordField(
+              hinttext: "Password",
               controller: password,
+              onChanged: (value) {},
+            ),
+            RoundedPasswordField(
+              hinttext: "Confirm Password",
+              controller: confirm_password,
               onChanged: (value) {},
             ),
             RoundedButton(

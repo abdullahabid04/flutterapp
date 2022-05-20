@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   bool _isVisible = false;
 
   _SplashScreenState() {
-    new Timer(const Duration(milliseconds: 2000), () {
+    Timer(const Duration(milliseconds: 2000), () {
       setState(() {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => WelcomeScreen()),
@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     });
 
-    new Timer(Duration(milliseconds: 10), () {
+    Timer(const Duration(milliseconds: 10), () {
       setState(() {
         _isVisible =
             true; // Now it is showing fade effect and navigating to Login page
@@ -36,8 +36,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: new BoxDecoration(
-        gradient: new LinearGradient(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
           colors: [
             Theme.of(context).accentColor,
             Theme.of(context).primaryColor
@@ -50,12 +50,12 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
       child: AnimatedOpacity(
         opacity: _isVisible ? 1.0 : 0,
-        duration: Duration(milliseconds: 1200),
+        duration: const Duration(milliseconds: 1200),
         child: Center(
           child: Container(
             height: 140.0,
             width: 140.0,
-            child: Center(
+            child: const Center(
               child: ClipOval(
                 child: Icon(
                   Icons.water_drop,
@@ -71,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   BoxShadow(
                     color: Colors.blue.withOpacity(0.3),
                     blurRadius: 2.0,
-                    offset: Offset(5.0, 3.0),
+                    offset: const Offset(5.0, 3.0),
                     spreadRadius: 2.0,
                   )
                 ]),

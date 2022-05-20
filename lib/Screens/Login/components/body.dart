@@ -45,6 +45,7 @@ class _BodyState extends State<Body> {
               onChanged: (value) {},
             ),
             RoundedPasswordField(
+              hinttext: "Password",
               controller: password,
               onChanged: (value) {},
             ),
