@@ -8,6 +8,7 @@ import '/components/rounded_button.dart';
 import '/components/rounded_input_field.dart';
 import '/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
+import '/Screens/Signup/verify_account.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -73,7 +74,16 @@ class _BodyState extends State<Body> {
             ),
             RoundedButton(
               text: "SIGNUP",
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return VerifyAccount();
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(

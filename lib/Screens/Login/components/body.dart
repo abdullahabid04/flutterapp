@@ -1,5 +1,6 @@
 import 'dart:developer';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import '/Screens/Login/components/background.dart';
 import '/Screens/Signup/signup_screen.dart';
@@ -9,6 +10,8 @@ import '/components/rounded_input_field.dart';
 import '/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
 import '/UserDashBoard/userdashboard.dart';
+import '/models/userlogin.dart';
+import '/models/loginuser.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -18,12 +21,32 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final email = TextEditingController();
-  final password = TextEditingController();
+  final emailcontroller = TextEditingController();
+  final passwordcontroller = TextEditingController();
+
+  Future<http.Response> userlogin(String mobile_no, String password) {
+    final jsondata =
+        LoginUser(mobileNo: mobile_no, password: password).toJson();
+    return http.post(Uri.parse('http://care-engg.com/api/login'),
+        body: jsondata);
+  }
+
+  Future<int> verifylogin(String mobile_no, String password) async {
+    http.Response response = await userlogin(mobile_no, password);
+    var decodeddata = jsonDecode(response.body);
+    var user_data = UserLogin.fromJson(decodeddata);
+
+    if (user_data.status == 1) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    var verify;
     return Background(
       child: SingleChildScrollView(
         child: Column(
@@ -40,26 +63,32 @@ class _BodyState extends State<Body> {
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
-              controller: email,
+              controller: emailcontroller,
               hintText: "Your Email",
               onChanged: (value) {},
             ),
             RoundedPasswordField(
               hinttext: "Password",
-              controller: password,
+              controller: passwordcontroller,
               onChanged: (value) {},
             ),
             RoundedButton(
               text: "LOGIN",
               press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return UserDashBoard();
-                    },
-                  ),
-                );
+                setState(() {
+                  print("object");
+                  verify = verifylogin(
+                      emailcontroller.text, passwordcontroller.text);
+                  print(verify);
+                });
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) {
+                //       return UserDashBoard();
+                //     },
+                //   ),
+                // );
               },
             ),
             SizedBox(height: size.height * 0.03),
