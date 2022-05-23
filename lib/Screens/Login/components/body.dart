@@ -10,8 +10,9 @@ import '/components/rounded_input_field.dart';
 import '/components/rounded_password_field.dart';
 import 'package:flutter_svg/svg.dart';
 import '/UserDashBoard/userdashboard.dart';
-import '/models/userlogin.dart';
-import '/models/loginuser.dart';
+import '/models/login_models/login_response.dart';
+import '/models/login_models/login_request.dart';
+import '/api_services/login_api.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -21,88 +22,181 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  bool hidePassword = true;
+  bool isApiCallProcess = false;
+  GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
+  late LoginRequest loginRequest;
+  late LoginResponse loginResponse;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
 
-  Future<http.Response> userlogin(String mobile_no, String password) {
-    final jsondata =
-        LoginUser(mobileNo: mobile_no, password: password).toJson();
-    return http.post(Uri.parse('http://care-engg.com/api/login'),
-        body: jsondata);
+  @override
+  void initState() {
+    super.initState();
+    loginRequest = LoginRequest();
+    loginResponse = LoginResponse();
   }
 
-  Future<int> verifylogin(String mobile_no, String password) async {
-    http.Response response = await userlogin(mobile_no, password);
-    var decodeddata = jsonDecode(response.body);
-    var user_data = UserLogin.fromJson(decodeddata);
-
-    if (user_data.status == 1) {
-      return 1;
+  bool validateAndSave() {
+    final form = globalFormKey.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
     } else {
-      return 0;
+      return false;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var verify;
     return Background(
+      key: scaffoldKey,
       child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "LOGIN",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: size.height * 0.03),
-            SvgPicture.asset(
-              "assets/icons/login.svg",
-              height: size.height * 0.35,
-            ),
-            SizedBox(height: size.height * 0.03),
-            RoundedInputField(
-              controller: emailcontroller,
-              hintText: "Your Email",
-              onChanged: (value) {},
-            ),
-            RoundedPasswordField(
-              hinttext: "Password",
-              controller: passwordcontroller,
-              onChanged: (value) {},
-            ),
-            RoundedButton(
-              text: "LOGIN",
-              press: () {
-                setState(() {
-                  print("object");
-                  verify = verifylogin(
-                      emailcontroller.text, passwordcontroller.text);
-                  print(verify);
-                });
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) {
-                //       return UserDashBoard();
-                //     },
-                //   ),
-                // );
-              },
-            ),
-            SizedBox(height: size.height * 0.03),
-            AlreadyHaveAnAccountCheck(
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return SignUpScreen();
-                    },
+            Stack(
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                  margin: EdgeInsets.symmetric(vertical: 85, horizontal: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Theme.of(context).primaryColor,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Theme.of(context).hintColor.withOpacity(0.2),
+                          offset: Offset(0, 10),
+                          blurRadius: 20)
+                    ],
                   ),
-                );
-              },
+                  child: Form(
+                    key: globalFormKey,
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(height: 25),
+                        Text(
+                          "Login",
+                          style: Theme.of(context).textTheme.headline2,
+                        ),
+                        SizedBox(height: 20),
+                        TextFormField(
+                          keyboardType: TextInputType.phone,
+                          onSaved: (input) => loginRequest.mobileNo = input,
+                          validator: (input) => input!.isNotEmpty
+                              ? input.length < 11 && input.length > 11
+                                  ? "Please enter valid mobile no"
+                                  : null
+                              : "Mobile no is required",
+                          decoration: InputDecoration(
+                            hintText: "Mobile No.",
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Theme.of(context)
+                                        .accentColor
+                                        .withOpacity(0.2))),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).accentColor)),
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: Theme.of(context).accentColor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        TextFormField(
+                          style:
+                              TextStyle(color: Theme.of(context).accentColor),
+                          keyboardType: TextInputType.text,
+                          onSaved: (input) => loginRequest.password = input,
+                          validator: (input) => input!.isEmpty
+                              ? "Password field is required"
+                              : null,
+                          obscureText: hidePassword,
+                          decoration: InputDecoration(
+                            hintText: "Password",
+                            enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Theme.of(context)
+                                        .accentColor
+                                        .withOpacity(0.2))),
+                            focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).accentColor)),
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Theme.of(context).accentColor,
+                            ),
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  hidePassword = !hidePassword;
+                                });
+                              },
+                              color: Theme.of(context)
+                                  .accentColor
+                                  .withOpacity(0.4),
+                              icon: Icon(hidePassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 30),
+                        FlatButton(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 80),
+                          onPressed: () {
+                            if (validateAndSave()) {
+                              print(loginRequest.toJson());
+
+                              setState(() {
+                                isApiCallProcess = true;
+                              });
+
+                              APIService apiService = APIService();
+                              apiService.login(loginRequest).then((value) {
+                                if (value != null) {
+                                  setState(() {
+                                    isApiCallProcess = false;
+                                  });
+                                  print(value.status);
+                                  print(value.message);
+                                  if (value.status == 1) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return UserDashBoard();
+                                        },
+                                      ),
+                                    );
+                                  } else {
+                                    final snackBar =
+                                        SnackBar(content: Text(value.message!));
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
+                                  }
+                                }
+                              });
+                            }
+                          },
+                          child: Text(
+                            "Login",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          color: Theme.of(context).accentColor,
+                          shape: StadiumBorder(),
+                        ),
+                        SizedBox(height: 15),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

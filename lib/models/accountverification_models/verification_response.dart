@@ -1,10 +1,10 @@
-class UserLogin {
+class VerificationResponse {
   int? status;
   String? message;
 
-  UserLogin({this.status, this.message});
+  VerificationResponse({this.status, this.message});
 
-  UserLogin.fromJson(Map<String, dynamic> json) {
+  VerificationResponse.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
   }

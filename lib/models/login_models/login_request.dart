@@ -1,10 +1,10 @@
-class LoginUser {
+class LoginRequest {
   String? mobileNo;
   String? password;
 
-  LoginUser({this.mobileNo, this.password});
+  LoginRequest({this.mobileNo, this.password});
 
-  LoginUser.fromJson(Map<String, dynamic> json) {
+  LoginRequest.fromJson(Map<String, dynamic> json) {
     mobileNo = json['mobile_no'];
     password = json['password'];
   }
