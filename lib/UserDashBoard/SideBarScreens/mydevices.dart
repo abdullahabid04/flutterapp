@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '/components/scrollable_widget.dart';
-import '/utilities/utils.dart';
 import '/models/devices_models/devices_request.dart';
 import '/models/devices_models/devices_response.dart';
 import '/api_services/devices_api.dart';
@@ -14,6 +13,7 @@ class MyDevices extends StatefulWidget {
 
 class _MyDevicesState extends State<MyDevices> {
   var myDevices = [];
+
   @override
   void initState() {
     super.initState();

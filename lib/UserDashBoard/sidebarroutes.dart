@@ -67,7 +67,7 @@ class ServiceHistory extends StatelessWidget {
           onPressed: () => {Navigator.of(context).pop()},
         ),
       ),
-      body: Services(),
+      body: MyServices(),
     );
   }
 }
@@ -80,7 +80,7 @@ class MyBilling extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('My dfgBills'),
+        title: const Text('My Bills'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => {Navigator.of(context).pop()},
