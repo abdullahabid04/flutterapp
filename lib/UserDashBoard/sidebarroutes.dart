@@ -34,8 +34,8 @@ class ScanForQuality extends StatelessWidget {
   }
 }
 
-class MyDevices extends StatelessWidget {
-  const MyDevices({Key? key}) : super(key: key);
+class OwnedDevices extends StatelessWidget {
+  const OwnedDevices({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class MyDevices extends StatelessWidget {
           onPressed: () => {Navigator.of(context).pop()},
         ),
       ),
-      body: Devices(),
+      body: MyDevices(),
     );
   }
 }

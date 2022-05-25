@@ -61,7 +61,7 @@ class _VerifyAccountState extends State<VerifyAccount> {
                     verificationRequest.verificationCode =
                         verifycontroller.text;
                     APIService apiService = APIService();
-                    apiService.login(verificationRequest).then((value) {
+                    apiService.verify(verificationRequest).then((value) {
                       if (value != null) {
                         if (value.status == 1) {
                           Navigator.push(

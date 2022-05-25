@@ -44,7 +44,8 @@ class MyDrawer extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const MyDevices()),
+                    MaterialPageRoute(
+                        builder: (context) => const OwnedDevices()),
                   );
                 }),
             ListTile(

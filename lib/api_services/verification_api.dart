@@ -4,7 +4,7 @@ import '/models/accountverification_models/verification_request.dart';
 import '/models/accountverification_models/verification_response.dart';
 
 class APIService {
-  Future<VerificationResponse> login(
+  Future<VerificationResponse> verify(
       VerificationRequest verificationRequest) async {
     String url = "http://care-engg.com/api/verify";
 
