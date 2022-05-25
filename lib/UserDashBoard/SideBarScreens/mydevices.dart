@@ -40,12 +40,28 @@ class _MyDevicesState extends State<MyDevices> {
 
   Widget myDataTable() {
     return DataTable(
+      border: TableBorder.all(
+          color: Colors.blue,
+          style: BorderStyle.none,
+          width: 2.0,
+          borderRadius: BorderRadius.all(Radius.circular(10.0))),
       columns: const <DataColumn>[
-        DataColumn(label: Text("Device Id")),
-        DataColumn(label: Text("Owner")),
-        DataColumn(label: Text("Shared")),
-        DataColumn(label: Text("Status")),
-        DataColumn(label: Text("Date Buyed")),
+        DataColumn(
+            label: Text("Device Id"),
+            tooltip: "Unique product code of your water filteration plant"),
+        DataColumn(
+            label: Text("Owner"),
+            tooltip:
+                "Indicates that you are the original owner of this device"),
+        DataColumn(
+            label: Text("Shared"),
+            tooltip: "Indicates that this device is shared with someone"),
+        DataColumn(
+            label: Text("Status"),
+            tooltip: "Indiicates that this device is working properly or not"),
+        DataColumn(
+            label: Text("Date Buyed"),
+            tooltip: "Date and Time when you bought the device"),
       ],
       rows: myDevices
           .map((device) => DataRow(cells: [
