@@ -83,6 +83,7 @@ class _BodyState extends State<Body> {
                         ),
                         SizedBox(height: 20),
                         TextFormField(
+                          controller: emailcontroller,
                           keyboardType: TextInputType.phone,
                           onSaved: (input) => loginRequest.mobileNo = input,
                           validator: (input) => input!.isNotEmpty
@@ -108,6 +109,7 @@ class _BodyState extends State<Body> {
                         ),
                         SizedBox(height: 20),
                         TextFormField(
+                          controller: passwordcontroller,
                           style:
                               TextStyle(color: Theme.of(context).accentColor),
                           keyboardType: TextInputType.text,

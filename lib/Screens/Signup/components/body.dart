@@ -28,10 +28,10 @@ class _BodyState extends State<Body> {
   late SignUpRequest signUpRequest;
   late SignUpResponse signUpResponse;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final email = TextEditingController();
   final first_name = TextEditingController();
   final last_name = TextEditingController();
   final mobile_no = TextEditingController();
+  final email = TextEditingController();
   final password = TextEditingController();
   final confirm_password = TextEditingController();
 
@@ -87,6 +87,7 @@ class _BodyState extends State<Body> {
                         ),
                         SizedBox(height: 20),
                         TextFormField(
+                          controller: first_name,
                           keyboardType: TextInputType.name,
                           onSaved: (input) => signUpRequest.firstName = input,
                           validator: (input) => input!.length < 4
@@ -110,6 +111,7 @@ class _BodyState extends State<Body> {
                         ),
                         SizedBox(height: 20),
                         TextFormField(
+                          controller: last_name,
                           keyboardType: TextInputType.name,
                           onSaved: (input) => signUpRequest.lastName = input,
                           validator: (input) => input!.length < 4
@@ -133,6 +135,7 @@ class _BodyState extends State<Body> {
                         ),
                         SizedBox(height: 20),
                         TextFormField(
+                          controller: email,
                           keyboardType: TextInputType.emailAddress,
                           onSaved: (input) => signUpRequest.eMail = input,
                           validator: (input) => !input!.contains('@')
@@ -156,6 +159,7 @@ class _BodyState extends State<Body> {
                         ),
                         SizedBox(height: 20),
                         TextFormField(
+                          controller: mobile_no,
                           keyboardType: TextInputType.phone,
                           onSaved: (input) => signUpRequest.mobileNo = input,
                           validator: (input) => input!.length < 11
@@ -179,6 +183,7 @@ class _BodyState extends State<Body> {
                         ),
                         SizedBox(height: 20),
                         TextFormField(
+                          controller: password,
                           style:
                               TextStyle(color: Theme.of(context).accentColor),
                           keyboardType: TextInputType.text,
@@ -218,6 +223,7 @@ class _BodyState extends State<Body> {
                         ),
                         SizedBox(height: 20),
                         TextFormField(
+                          controller: confirm_password,
                           style:
                               TextStyle(color: Theme.of(context).accentColor),
                           keyboardType: TextInputType.text,
