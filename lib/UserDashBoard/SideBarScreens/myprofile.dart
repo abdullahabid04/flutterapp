@@ -65,7 +65,7 @@ class _ProfileState extends State<Profile> {
             emailcontroller.text = "";
           });
         }
-      } else {}
+      }
     });
   }
 
@@ -83,7 +83,7 @@ class _ProfileState extends State<Profile> {
               SizedBox(height: 25),
               Text(
                 "Profile",
-                style: Theme.of(context).textTheme.headline2,
+                style: Theme.of(context).textTheme.headline3,
               ),
               SizedBox(height: 20),
               TextFormField(
