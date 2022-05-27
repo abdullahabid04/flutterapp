@@ -311,6 +311,19 @@ class _BodyState extends State<Body> {
                           color: Theme.of(context).accentColor,
                           shape: StadiumBorder(),
                         ),
+                        SizedBox(height: 30),
+                        AlreadyHaveAnAccountCheck(
+                            login: false,
+                            press: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return LoginScreen();
+                                  },
+                                ),
+                              );
+                            }),
                         SizedBox(height: 15),
                       ],
                     ),

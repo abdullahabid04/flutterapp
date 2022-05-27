@@ -193,6 +193,17 @@ class _BodyState extends State<Body> {
                           color: Theme.of(context).accentColor,
                           shape: StadiumBorder(),
                         ),
+                        SizedBox(height: 30),
+                        AlreadyHaveAnAccountCheck(press: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return SignUpScreen();
+                              },
+                            ),
+                          );
+                        }),
                         SizedBox(height: 15),
                       ],
                     ),

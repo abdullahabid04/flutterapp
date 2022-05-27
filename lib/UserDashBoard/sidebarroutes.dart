@@ -5,7 +5,7 @@ import 'SideBarScreens/referralprogram.dart';
 import 'SideBarScreens/servicehistory.dart';
 import 'SideBarScreens/billing.dart';
 import 'SideBarScreens/myprofile.dart';
-import 'SideBarScreens/sharemydevices.dart';
+import 'SideBarScreens/share_my_device/sharemydevices.dart';
 import 'SideBarScreens/contactus.dart';
 
 class ScanForQuality extends StatelessWidget {
