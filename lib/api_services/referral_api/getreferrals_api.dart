@@ -7,7 +7,7 @@ class GetReferralsAPI {
   Future<GetReferralResponse> getreferrals(
       GetReferralRequest getReferralRequest) async {
     String url =
-        "http://care-engg.com/api/profile?mobile_no=${getReferralRequest.mobileNo}";
+        "http://care-engg.com/api/getreferral?mobile_no=${getReferralRequest.mobileNo}";
 
     final response = await http.get(Uri.parse(url));
     //   if (response.statusCode == 200 || response.statusCode == 400) {

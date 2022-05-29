@@ -40,6 +40,61 @@ class _ReferProgramState extends State<ReferProgram> {
     postReferralsAPI = PostReferralsAPI();
     getReferralRequest = GetReferralRequest();
     postReferralRequest = PostReferralRequest();
+
+    getReferralRequest.mobileNo = "13579";
+
+    getReferralsAPI.getreferrals(getReferralRequest).then((value) {
+      if (value != null) {
+        if (value.status == 1) {
+          if (value.myreferrals != null) {
+            if (value.myreferrals!.status == 1) {
+              if (value.myreferrals!.referrals!.count == 1) {
+                setState(() {
+                  referral1status = true;
+                  referral1namecontroller.text =
+                      value.myreferrals!.referrals!.referral1!.referralName!;
+                  referral1mobilecontroller.text =
+                      value.myreferrals!.referrals!.referral1!.referralMobile!;
+                });
+              }
+              if (value.myreferrals!.referrals!.count == 2) {
+                setState(() {
+                  referral1status = true;
+                  referral2status = true;
+                  referral1namecontroller.text =
+                      value.myreferrals!.referrals!.referral1!.referralName!;
+                  referral1mobilecontroller.text =
+                      value.myreferrals!.referrals!.referral1!.referralMobile!;
+                  referral2namecontroller.text =
+                      value.myreferrals!.referrals!.referral2!.referralName!;
+                  referral2mobilecontroller.text =
+                      value.myreferrals!.referrals!.referral2!.referralMobile!;
+                });
+              }
+              if (value.myreferrals!.referrals!.count == 3) {
+                setState(() {
+                  referral1status = true;
+                  referral2status = true;
+                  referral3status = true;
+                  referral1namecontroller.text =
+                      value.myreferrals!.referrals!.referral1!.referralName!;
+                  referral1mobilecontroller.text =
+                      value.myreferrals!.referrals!.referral1!.referralMobile!;
+                  referral2namecontroller.text =
+                      value.myreferrals!.referrals!.referral2!.referralName!;
+                  referral2mobilecontroller.text =
+                      value.myreferrals!.referrals!.referral2!.referralMobile!;
+                  referral3namecontroller.text =
+                      value.myreferrals!.referrals!.referral3!.referralName!;
+                  referral3mobilecontroller.text =
+                      value.myreferrals!.referrals!.referral3!.referralMobile!;
+                });
+              }
+            }
+          }
+        }
+      }
+    });
   }
 
   @override
@@ -119,7 +174,69 @@ class _ReferProgramState extends State<ReferProgram> {
         Container(
           child: RoundedButton(
             text: "Refer",
-            press: () => {},
+            press: () {
+              postReferralRequest.mobileNo = "13579";
+
+              if (referral1status == false ||
+                  referral2status == false ||
+                  referral3status == false) {
+                if (referral1status == false) {
+                  if (referral1namecontroller.text.isNotEmpty &&
+                      referral1mobilecontroller.text.isNotEmpty) {
+                    postReferralRequest.referral1Name =
+                        referral1namecontroller.text;
+                    postReferralRequest.referral1Mobile =
+                        referral1mobilecontroller.text;
+                  } else {
+                    postReferralRequest.referral1Name = "";
+                    postReferralRequest.referral1Mobile = "";
+                  }
+                } else {
+                  postReferralRequest.referral1Name = "";
+                  postReferralRequest.referral1Mobile = "";
+                }
+                if (referral2status == false) {
+                  if (referral2namecontroller.text.isNotEmpty &&
+                      referral2mobilecontroller.text.isNotEmpty) {
+                    postReferralRequest.referral2Name =
+                        referral2namecontroller.text;
+                    postReferralRequest.referral2Mobile =
+                        referral2mobilecontroller.text;
+                  } else {
+                    postReferralRequest.referral2Name = "";
+                    postReferralRequest.referral2Mobile = "";
+                  }
+                } else {
+                  postReferralRequest.referral2Name = "";
+                  postReferralRequest.referral2Mobile = "";
+                }
+                if (referral3status == false) {
+                  if (referral3namecontroller.text.isNotEmpty &&
+                      referral3mobilecontroller.text.isNotEmpty) {
+                    postReferralRequest.referral3Name =
+                        referral3namecontroller.text;
+                    postReferralRequest.referral3Mobile =
+                        referral3mobilecontroller.text;
+                  } else {
+                    postReferralRequest.referral3Name = "";
+                    postReferralRequest.referral3Mobile = "";
+                  }
+                } else {
+                  postReferralRequest.referral3Name = "";
+                  postReferralRequest.referral3Mobile = "";
+                }
+
+                postReferralsAPI
+                    .postreferrals(postReferralRequest)
+                    .then((value) {
+                  if (value != null) {
+                    if (value.status == 1) {
+                      print(value.message);
+                    }
+                  }
+                });
+              } else {}
+            },
           ),
         ),
       ]),

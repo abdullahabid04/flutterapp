@@ -6,7 +6,7 @@ import '/models/referral_models/post_referral_response.dart';
 class PostReferralsAPI {
   Future<PostReferralResponse> postreferrals(
       PostReferralRequest postReferralRequest) async {
-    String url = "http://care-engg.com/api/updateprofile";
+    String url = "http://care-engg.com/api/postreferral";
 
     final response =
         await http.post(Uri.parse(url), body: postReferralRequest.toJson());
